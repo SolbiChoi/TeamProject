@@ -26,6 +26,19 @@ body, html {
 .w3-bar .w3-button {
   padding: 16px;
 }
+
+select {
+  appearance: none; -webkit-appearance: none; -moz-appearance: none;
+  width:20vw; height:auto; font-size:1.5vw;
+  border:1px solid #ccc; color: black;
+  no-repeat 95% 50%; border-radius:4px;
+  }
+select::-ms-expand {display: none;}
+
+.w3-black, .w3-hover-black:hover {
+  color: #fff!important; background-color: #1b1a1aa3 !important; border-radius:4px;
+}
+form { display: inline;}
 </style>
 <body>
 
@@ -52,9 +65,33 @@ body, html {
 </nav>
 
 <!-- Header with full-height image -->
-<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+<header class="bgimg-1 w3-display-container" id="home">
   <div class="w3-display-bottommiddle w3-text-white" style="padding:48px">
-    <p><a href="#about" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Learn more and start today</a></p>
+    <form name="search" action="/analysis" method="GET">
+        <div class="w3-input-group w3-hover-opacity-off " style="display:inline-flex; flex-direction: row;">
+            <select name="category" style="padding: 1px 20px! important;">
+              <option value="" disabled selected hidden>Choose Category</option>
+              <option value="Tech">테크·가전</option>
+              <option value="Fashion">패션·잡화</option>
+              <option value="Beauty">뷰티</option>
+              <option value="Food">푸드</option>
+              <option value="Home Living">홈리빙</option>
+              <option value="Travel">여행·레저</option>
+              <option value="Sports">스포츠·모빌리티</option>
+              <option value="Culture">공연·컬쳐</option>
+              <option value="Baby">베이비·키즈</option>
+              <option value="Pets">반려동물</option>
+              <option value="Games">게임·취미</option>
+              <option value="Class">클래스</option>
+              <option value="Publishing">출판</option>
+              <option value="Design">디자인소품</option>
+              <option value="Social">소셜·캠페인</option>
+              <option value="Donation">기부·후원</option>
+              <option value="Meeting">모임</option>
+            </select>
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </div>
+      </form>
   </div>
   <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
   </div>
