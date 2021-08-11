@@ -1,6 +1,6 @@
-# TeamProject_4조 펀딩매니저
-- [팀 구성원과 역할분담](https://github.com/SolbiChoi/TeamProject/tree/master/home)
-- 프로젝트 주제 및 개요
+## TeamProject_4조 펀딩매니저
+###  [팀 구성원 및 역할분담](https://github.com/SolbiChoi/TeamProject/tree/master/home)
+### 프로젝트 주제 및 개요
   - **주제**  
     크라우드 펀딩 사이트 내 커뮤니티 글이 펀딩 성공여부에 미치는 영향 분석
   - **개요**  
