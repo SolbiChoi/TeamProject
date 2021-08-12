@@ -39,6 +39,17 @@ select::-ms-expand {display: none;}
   color: #fff!important; background-color: #1b1a1aa3 !important; border-radius:4px;
 }
 form { display: inline;}
+
+.button {
+  border-radius: 4px;
+  color: white;
+  padding: 10px;
+  display: inline-block;
+  font-size: 1.5vw;
+
+  cursor: pointer;
+}
+.button1 {background-color: gray;}
 </style>
 <body>
 
@@ -89,9 +100,7 @@ form { display: inline;}
               <option value="Donation">기부·후원</option>
               <option value="Meeting">모임</option>
             </select>
-          <div class="absolute top-4 right-2">
-            <button class="h-10 w-20 text-white rounded-lg bg-red-500 hover:bg-red-600"><i class="fa fa-search"></i></button>
-          </div>
+          <button class="button button1"><i class="fa fa-search"></i></button>
         </div>
       </form>
   </div>
