@@ -29,7 +29,7 @@ body, html {
 
 select {
   appearance: none; -webkit-appearance: none; -moz-appearance: none;
-  width:20vw; height:auto; font-size:1.5vw;
+  width:19vw; height:auto; font-size:1.5vw;
   border:1px solid #ccc; color: black;
   no-repeat 95% 50%; border-radius:4px;
   }
@@ -89,7 +89,9 @@ form { display: inline;}
               <option value="Donation">기부·후원</option>
               <option value="Meeting">모임</option>
             </select>
-          <button type="submit"><i class="fa fa-search"></i></button>
+          <div class="absolute top-4 right-2">
+            <button class="h-10 w-20 text-white rounded-lg bg-red-500 hover:bg-red-600"><i class="fa fa-search"></i></button>
+          </div>
         </div>
       </form>
   </div>
