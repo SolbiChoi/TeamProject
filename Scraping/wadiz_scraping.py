@@ -5,7 +5,7 @@ import time
 import requests
 
 driver = webdriver.Chrome('/chromedriver.exe')
-driver.get('https://www.wadiz.kr/web/wreward/main?keyword=&endYn=Y&order=support')
+driver.get('https://www.wadiz.kr/web/wreward/category/287?keyword=&endYn=Y&order=support')
 
 # 스크롤 15번 내림
 num_scroll = 15
