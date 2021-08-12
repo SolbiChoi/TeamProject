@@ -5,7 +5,7 @@ import time
 import requests
 
 driver = webdriver.Chrome('/chromedriver.exe')
-driver.get('https://www.wadiz.kr/web/wreward/category/287?keyword=&endYn=Y&order=support')
+driver.get('https://www.wadiz.kr/web/wreward/category/294?keyword=&endYn=Y&order=support')
 
 # 스크롤 15번 내림
 num_scroll = 15
@@ -24,10 +24,10 @@ funding_list = []
 for data in data_list:
     title = data.select('strong')[0].text.strip()
     category = data.select('span.RewardProjectCard_category__2muXk')[0].text.strip()
-    score = data.select('span.RewardProjectCard_percent__3TW4_')[0].text.strip()
+    score = data.select('span.RewardProjectCard_isAchieve__1LcUu')[0].text.strip()
     funding_list.append([title, category, score])
     columns = ['title', 'category', 'score']
     result = pd.DataFrame(funding_list, columns=columns)
-result.to_excel('./files/data.xlsx', index=False)
+result.to_excel('./files/culture_data.xlsx', index=False)
 driver.close()
 driver.quit()
