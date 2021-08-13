@@ -14,7 +14,7 @@ time.sleep(1)
 
 wadiz_review = []
 for i in range(47,50): #데이터 범위 한페이지 48개
-    driver.execute_script("window.scrollTo(0,document.body.scrollHeight-500)")
+    driver.execute_script("window.scrollTo(0,document.body.scrollHeight-500)") #스크롤
     table = driver.find_element_by_class_name('ProjectCardList_container__3Y14k')  # 표 전체
     rows = table.find_elements_by_class_name("ProjectCardList_item__1owJa")[i]
     rows.click()
@@ -22,7 +22,7 @@ for i in range(47,50): #데이터 범위 한페이지 48개
     community = driver.find_element_by_css_selector('#container > div.reward-nav > ul > li:nth-child(5) > a') #커뮤니티 클릭
     community.click()
     try:
-        reward = driver.find_element_by_xpath('//*[@id="rating-app"]/div[3]/div[1]/div[1]/div/span[1]') #리워드 별점
+        reward = driver.find_element_by_xpath('//*[@id="rating-app"]/div[3]/div[1]/div[1]/div/span[1]') #리뷰
         while True:
             try:
                 review_more = driver.find_element_by_css_selector('#rating-app > div.CommentListMoreButton_container__23PfA > button') #더보기
