@@ -22,9 +22,9 @@ def scraping_page():
             title = data.select('strong')[0].text.strip() #title
             score = data.select('span.RewardProjectCard_isAchieve__1LcUu')[0].text.strip() #성공여부
             count = count+1
-            click_page = driver.find_element_by_class_name('ProjectCardList_item__1owJa')
+            click_page = driver.find_element_by_class_name('ProjectCardList_item__1owJa') #리스트 클릭
             click_page.click()
-            # click_community = driver.find_element_by_css_selector('div.reward-nav > ul > li:nth-child(5) > a')
+            # click_community = driver.find_element_by_css_selector('div.reward-nav > ul > li:nth-child(5) > a') #커뮤니티 클릭
             # click_community.click()
             # driver.back()
             driver.back()
