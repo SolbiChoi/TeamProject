@@ -13,7 +13,8 @@ rows = table.find_element_by_class_name('ProjectCardList_item__1owJa')
 time.sleep(1)
 
 wadiz_review = []
-for i in range(0,48): #데이터 범위 한페이지 48개
+for i in range(47,50): #데이터 범위 한페이지 48개
+    driver.execute_script("window.scrollTo(0,document.body.scrollHeight-500)")
     table = driver.find_element_by_class_name('ProjectCardList_container__3Y14k')  # 표 전체
     rows = table.find_elements_by_class_name("ProjectCardList_item__1owJa")[i]
     rows.click()
