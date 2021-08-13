@@ -5,29 +5,40 @@ import time
 import requests
 
 driver = webdriver.Chrome('/chromedriver.exe')
-driver.get('https://www.wadiz.kr/web/wreward/main?keyword=&endYn=Y&order=support')
+driver.get('https://www.wadiz.kr/web/wreward/category/294?keyword=&endYn=Y&order=support')
 
-# 스크롤 15번 내림
-num_scroll = 15
-while num_scroll:
-    driver.execute_script("window.scrollTo(0, document.body.scrollHeight-1000);")
-    time.sleep(2)
-    num_scroll -= 1
-time.sleep(1)
+def scraping_page():
+    # 스크롤 15번 내림
+    num_scroll = 2
+    while num_scroll:
+        # 데이터 가져오기
+        html = driver.page_source
+        soup = BeautifulSoup(html, 'html.parser')
+        time.sleep(1)
+        data_list = soup.select('div.ProjectCardList_list__1YBa2 > div') #리스트
+        funding_list = []
+        for data in data_list:
+            title = data.select('strong')[0].text.strip() #title
+            score = data.select('span.RewardProjectCard_isAchieve__1LcUu')[0].text.strip() #성공여부
+            click_page = driver.find_element_by_class_name('ProjectCardList_item__1owJa') #리스트 클릭
+            click_page.click()
+            click_community = driver.find_element_by_css_selector('div.reward-nav > ul > li:nth-child(5) > a') #커뮤니티 클릭
+            click_community.click()
 
-# 데이터 가져오기
-html = driver.page_source
-soup = BeautifulSoup(html, 'html.parser')
-data_list = soup.select('div.ProjectCardList_list__1YBa2 > div > div > div > div')
-time.sleep(1)
-funding_list = []
-for data in data_list:
-    title = data.select('strong')[0].text.strip()
-    category = data.select('span.RewardProjectCard_category__2muXk')[0].text.strip()
-    score = data.select('span.RewardProjectCard_percent__3TW4_')[0].text.strip()
-    funding_list.append([title, category, score])
-    columns = ['title', 'category', 'score']
-    result = pd.DataFrame(funding_list, columns=columns)
-result.to_excel('./files/data.xlsx', index=False)
+
+            driver.back()
+            driver.back()
+            time.sleep(0.5)
+
+            funding_list.append([title, score])
+            columns = ['title', 'score']
+            result = pd.DataFrame(funding_list, columns=columns)
+            print(title,score)
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight-1000);")
+        time.sleep(2)
+        num_scroll -= 1
+
+scraping_page()
+# # result.to_excel('./files/culture_data.xlsx', index=False)
 driver.close()
 driver.quit()
