@@ -1,44 +1,56 @@
 import pandas as pd
-from bs4 import BeautifulSoup
 from selenium import webdriver
 import time
+import numpy as np
 import requests
+from selenium.common.exceptions import NoSuchElementException
 
 driver = webdriver.Chrome('/chromedriver.exe')
 driver.get('https://www.wadiz.kr/web/wreward/category/294?keyword=&endYn=Y&order=support')
 
-def scraping_page():
-    # 스크롤 15번 내림
-    num_scroll = 2
-    while num_scroll:
-        # 데이터 가져오기
-        html = driver.page_source
-        soup = BeautifulSoup(html, 'html.parser')
-        time.sleep(1)
-        data_list = soup.select('div.ProjectCardList_list__1YBa2 > div') #리스트
-        funding_list = []
-        for data in data_list:
-            title = data.select('strong')[0].text.strip() #title
-            score = data.select('span.RewardProjectCard_isAchieve__1LcUu')[0].text.strip() #성공여부
-            click_page = driver.find_element_by_class_name('ProjectCardList_item__1owJa') #리스트 클릭
-            click_page.click()
-            click_community = driver.find_element_by_css_selector('div.reward-nav > ul > li:nth-child(5) > a') #커뮤니티 클릭
-            click_community.click()
-
-
-            driver.back()
-            driver.back()
-            time.sleep(0.5)
-
-            funding_list.append([title, score])
-            columns = ['title', 'score']
-            result = pd.DataFrame(funding_list, columns=columns)
-            print(title,score)
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight-1000);")
-        time.sleep(2)
-        num_scroll -= 1
-
-scraping_page()
-# # result.to_excel('./files/culture_data.xlsx', index=False)
+table = driver.find_element_by_class_name('ProjectCardList_container__3Y14k')
+rows = table.find_element_by_class_name('ProjectCardList_item__1owJa')
+time.sleep(1)
+wadiz_title = []
+wadiz_score = []
+wadiz_reward = []
+wadiz_maker = []
+wadiz_review = []
+for i in range(4,5): #데이터 범위
+    table = driver.find_element_by_class_name('ProjectCardList_container__3Y14k')  # 표 전체
+    rows = table.find_elements_by_class_name("ProjectCardList_item__1owJa")[i]
+    rows.click()
+    time.sleep(1)
+    title = driver.find_element_by_xpath('//*[@id="container"]/div[3]/h2/a')  # 제목
+    wadiz_title.append(title.text)
+    community = driver.find_element_by_css_selector('#container > div.reward-nav > ul > li:nth-child(5) > a') #커뮤니티 클릭
+    community.click()
+    try:
+        reward = driver.find_element_by_xpath('//*[@id="rating-app"]/div[3]/div[1]/div[1]/div/span[1]') #리워드 별점
+        wadiz_reward.append(reward.text)
+        maker = driver.find_element_by_xpath('//*[@id="rating-app"]/div[3]/div[1]/div[2]/div/span[1]') #메이커 별점
+        wadiz_maker.append(maker.text)
+        while True:
+            try:
+                review_more = driver.find_element_by_css_selector('#rating-app > div.CommentListMoreButton_container__23PfA > button')
+                review_more.click()
+                time.sleep(0.5)
+            except:
+                break
+        review = driver.find_elements_by_css_selector('#rating-app > div > div > div:nth-child(3) > div >div')
+        for s in review:
+            wadiz_review.append(s.text.strip())
+    except NoSuchElementException: #별점 없을 경우 예외처리
+        wadiz_reward = [0]
+        wadiz_maker = [0]
+        wadiz_review = [0]
+        driver.back()
+        driver.back()
+    time.sleep(1)
+print(wadiz_review)
+df = pd.DataFrame({'review':wadiz_review})
+print(df)
+# df = pd.DataFrame({'title': wadiz_title, 'reward':wadiz_reward, 'maker':wadiz_maker, 'review':wadiz_review})
+# print(df)
 driver.close()
 driver.quit()
