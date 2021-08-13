@@ -21,7 +21,7 @@ get_ipython().system('dir .\\chromedriver.exe')
 
 
 driver = webdriver.Chrome()
-driver.get('https://www.wadiz.kr/web/wreward/category/313?keyword=&endYn=Y&order=support')
+driver.get('https://www.wadiz.kr/web/wreward/category/293?keyword=&endYn=Y&order=support')
 
 
 # In[4]:
@@ -35,7 +35,7 @@ while num_scroll:
 time.sleep(1)
 
 
-# In[6]:
+# In[5]:
 
 
 html = driver.page_source
@@ -43,10 +43,18 @@ soup = BeautifulSoup(html, 'html.parser')
 
 browser = webdriver.Chrome('./chromedriver.exe')
 data_list = soup.select('div.ProjectCardList_list__1YBa2 > div > div > div > div')
+publication=[]
 for data in data_list:
     title = data.select('strong')[0].text.strip()
     print(title)
-len(title)
+    publication.append([title])
+
+
+# In[6]:
+
+
+pd_data = pd.DataFrame(publication, columns=['wadiz publication'])
+pd_data
 
 
 # In[ ]:
