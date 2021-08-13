@@ -16,13 +16,11 @@ wadiz_score = []
 wadiz_reward = []
 wadiz_maker = []
 wadiz_review = []
-for i in range(4,5): #데이터 범위
+for i in range(0,5): #데이터 범위
     table = driver.find_element_by_class_name('ProjectCardList_container__3Y14k')  # 표 전체
     rows = table.find_elements_by_class_name("ProjectCardList_item__1owJa")[i]
     rows.click()
     time.sleep(1)
-    title = driver.find_element_by_xpath('//*[@id="container"]/div[3]/h2/a')  # 제목
-    wadiz_title.append(title.text)
     community = driver.find_element_by_css_selector('#container > div.reward-nav > ul > li:nth-child(5) > a') #커뮤니티 클릭
     community.click()
     try:
@@ -47,7 +45,6 @@ for i in range(4,5): #데이터 범위
         driver.back()
         driver.back()
     time.sleep(1)
-print(wadiz_review)
 df = pd.DataFrame({'review':wadiz_review})
 print(df)
 # df = pd.DataFrame({'title': wadiz_title, 'reward':wadiz_reward, 'maker':wadiz_maker, 'review':wadiz_review})
