@@ -6,7 +6,7 @@ import requests
 from selenium.common.exceptions import NoSuchElementException
 
 driver = webdriver.Chrome('/chromedriver.exe')
-driver.get('https://www.wadiz.kr/web/wreward/category/294?keyword=&endYn=Y&order=support')
+driver.get('https://www.wadiz.kr/web/wreward/category/287?keyword=&endYn=Y&order=support')
 
 table = driver.find_element_by_class_name('ProjectCardList_container__3Y14k')
 rows = table.find_element_by_class_name('ProjectCardList_item__1owJa')
