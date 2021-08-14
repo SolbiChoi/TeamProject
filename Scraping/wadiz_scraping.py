@@ -13,7 +13,7 @@ rows = table.find_element_by_class_name('ProjectCardList_item__1owJa')
 time.sleep(1)
 
 wadiz_review = []
-for i in range(47,50): #데이터 범위 한페이지 48개
+for i in range(0,144): #데이터 범위 한페이지 48개
     driver.execute_script("window.scrollTo(0,document.body.scrollHeight-500)") #스크롤
     table = driver.find_element_by_class_name('ProjectCardList_container__3Y14k')  # 표 전체
     rows = table.find_elements_by_class_name("ProjectCardList_item__1owJa")[i]
@@ -25,7 +25,7 @@ for i in range(47,50): #데이터 범위 한페이지 48개
         reward = driver.find_element_by_xpath('//*[@id="rating-app"]/div[3]/div[1]/div[1]/div/span[1]') #리뷰
         while True:
             try:
-                review_more = driver.find_element_by_css_selector('#rating-app > div.CommentListMoreButton_container__23PfA > button') #더보기
+                review_more = driver.find_element_by_css_selector('#rating-app > div.CommentListMoreButton_container__23PfA > button') #더보기 클릭
                 review_more.click()
                 time.sleep(0.7)
             except:
@@ -35,10 +35,11 @@ for i in range(47,50): #데이터 범위 한페이지 48개
             wadiz_review.append(s.text.strip())
         driver.back()
         driver.back()
-    except NoSuchElementException: #별점 없을 경우 예외처리
+    except NoSuchElementException: #리뷰 없을 경우 예외처리
         driver.back()
         driver.back()
     time.sleep(1)
+
 df = pd.DataFrame({'review':wadiz_review})
 print(df)
 
