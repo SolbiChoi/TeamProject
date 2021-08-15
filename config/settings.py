@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'home',
     'DeepLearning',
     'Scraping',
+    'polls.apps.PollsConfig',
 ]
 
 MIDDLEWARE = [
