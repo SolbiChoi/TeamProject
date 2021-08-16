@@ -27,6 +27,5 @@ urlpatterns = [
     path('food', views.food),
     path('fashion', views.fashion),
     path('living', views.living),
-
     path('service', views.service),
 ]
