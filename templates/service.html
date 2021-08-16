@@ -14,10 +14,11 @@ body, html {
   line-height: 1.8;
 }
 
-/* Full height image header */
 .w3-bar .w3-button {
   padding: 16px;
 }
+
+
 </style>
 <body>
 <!-- Navbar (sit on top) -->
@@ -25,7 +26,8 @@ body, html {
   <div class="w3-bar w3-white w3-card" id="myNavbar">
     <a href="main_home" class="w3-bar-item w3-button w3-wide"><i class="fa fa-arrow-left w3-margin-middle"></i>MAIN</a>
     <!-- Middle-sided navbar links -->
-    <div class="w3-middle w3-hide-small">
+    <div class="w3-right w3-hide-small">
+      <a class="w3-bar-item w3-button">테크</a>
     </div>
     <!-- Hide right-floated links on small screens and replace them with a menu icon -->
     <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
@@ -34,12 +36,18 @@ body, html {
   </div>
 </div>
 
-<div class="w3-container" style="padding:128px 16px" id="bar">
-<h3 class="w3-center">이곳에 머신러닝 결과를 기반으로한 서비스를 제공합니다.</h3>
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+  <a class="w3-bar-item w3-button">테크</a>
+</nav>
 
+<div class="w3-container w3-large" style="padding:14vw 8vw;" id="service">
+  <h1 class="w3-center">이곳에 머신러닝 결과를 기반으로한 서비스를 제공합니다.</h1>
+  </div>
+</div>
 
 <!-- Footer -->
-<footer class="w3-center w3-gray w3-padding-64">
+<footer class="w3-center w3-grey w3-padding-64">
   <a href="#bar" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
   <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
 </footer>
