@@ -25,3 +25,7 @@ def food(request):
 def living(request):
     result={}
     return render(request, 'living.html', context=result)
+
+def service(request):
+    result={}
+    return render(request, 'service.html', context=result)
