@@ -83,15 +83,15 @@ form { display: inline;}
 <!-- Header with full-height image -->
 <header class="bgimg-1 w3-display-container" id="home">
   <div class="w3-display-bottommiddle w3-text-white" style="padding:48px">
-    <form name="search" action="/analysis" method="GET">
+    <form name="search" method="GET">
         <div class="w3-input-group w3-hover-opacity-off " style="display:inline-flex; flex-direction: row;">
-            <select name="category" style="padding: 1px 20px! important;">
+            <select name="category" onchange="if(this.value) location.href=(this.value);" style="padding: 1px 20px! important;">
               <option value="" disabled selected hidden>Choose Category</option>
-              <option value="Tech">테크·가전</option>
-              <option value="Fashion">패션·잡화</option>
-              <option value="Beauty">뷰티</option>
-              <option value="Food">푸드</option>
-              <option value="Home Living">홈리빙</option>
+              <option value="tech">테크·가전</option>
+              <option value="fashion">패션·잡화</option>
+              <option value="beauty">뷰티</option>
+              <option value="food">푸드</option>
+              <option value="living">홈리빙</option>
             </select>
           <button class="button button1"><i class="fa fa-search"></i></button>
         </div>
