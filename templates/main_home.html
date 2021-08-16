@@ -113,11 +113,11 @@ form { display: inline;}
   <h3 class="w3-center">ABOUT SERVICES</h3>
   <div class="w3-row-padding w3-center" style="margin-top:64px">
     <div class="w3-third">
-      <i class="fa fa-heart w3-margin-bottom w3-jumbo w3-center" onclick="onClick(this)" class="w3-hover-opacity" ></i>
+      <i class="fa fa-heart w3-margin-bottom w3-jumbo w3-center" onclick="document.getElementById('Info').style.display='block'" data-toggle="modal" data-target="#myModal" class="w3-hover-opacity" ></i>
       <p class="w3-large">Info</p>
     </div>
     <div class="w3-third">
-      <i class="fa fa-heart w3-margin-bottom w3-jumbo w3-center" onclick="onClick(this)" class="w3-hover-opacity"></i>
+      <i class="fa fa-heart w3-margin-bottom w3-jumbo w3-center" onclick="document.getElementById('Service').style.display='block'" data-toggle="modal" data-target="#myModal" class="w3-hover-opacity"></i>
       <p class="w3-large">Service</p>
     </div>
     <div class="w3-third">
@@ -128,10 +128,27 @@ form { display: inline;}
 </div>
 
 <!-- Modal for full size images on click-->
-<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
-  <span class="w3-button w3-large w3-black w3-display-topright" title="Close Modal Image"><i class="fa fa-remove"></i></span>
-  <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
-    <p id="caption" class="w3-opacity w3-large"></p>
+<div id="Info" class="w3-modal w3-black" onclick="this.style.display='none'">
+  <div class="w3-modal-content w3-card-8 w3-animate-zoom w3-text-black">
+    <header class="w3-container w3-text-black">
+      <span onclick="document.getElementById('Info').style.display='none'" class="w3-closebtn w3-padding-top" style="float: right;">&times;</span>
+    </header>
+    <div class="w3-container" style="text-align:center; max-width:fit-content;">
+      <p>info...</p>
+    </div>
+    <div class="w3-container w3-padding"></div>
+  </div>
+</div>
+
+<div id="Service" class="w3-modal w3-black" onclick="this.style.display='none'">
+  <div class="w3-modal-content w3-card-8 w3-animate-zoom w3-text-black">
+    <header class="w3-container w3-text-black">
+      <span onclick="document.getElementById('Service').style.display='none'" class="w3-closebtn w3-padding-top" style="float: right;">&times;</span>
+    </header>
+    <div class="w3-container" style="text-align:center; max-width:fit-content;">
+      <p>service...</p>
+    </div>
+    <div class="w3-container w3-padding"></div>
   </div>
 </div>
 
@@ -203,12 +220,10 @@ form { display: inline;}
 
 <script>
 // Modal Image Gallery
-function onClick(element) {
-  document.getElementById("modal01").style.display = "block";
-  var captionText = document.getElementById("caption");
-  captionText.innerHTML = element.alt;
-}
-
+var modal = document.getElementById('Info');
+var modal = document.getElementById('Service');
+window.onclick = function(event) {
+        if (event.target == modal) {modal.style.display = "none";} }
 
 // Toggle between showing and hiding the sidebar when clicking the menu icon
 var mySidebar = document.getElementById("mySidebar");
