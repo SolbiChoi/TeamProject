@@ -1,3 +1,6 @@
+import sqlite3
+import pandas as pd
+
 from django.shortcuts import render
 
 # Create your views here.
@@ -29,3 +32,13 @@ def living(request):
 def service(request):
     result={}
     return render(request, 'service.html', context=result)
+
+def analysis(request):  ## html 파일 하나로 처리
+    category = request.GET.get('category')
+    conn = sqlite3.connect('../polls/scraping_db/wadizdb.sqlite3')
+    cur = conn.cursor()
+    df = pd.read_sql_query("SELECT * FROM table"+category+"", conn) # 해당 카테고리의 DB를 불러옴
+# 시각화 자료 데이터 첨부
+
+    result={}
+    return render(request, 'analysis.html', context=result)
