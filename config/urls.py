@@ -28,4 +28,6 @@ urlpatterns = [
     path('fashion', views.fashion),
     path('living', views.living),
     path('service', views.service),
+
+    path('analysis', views.analysis),
 ]

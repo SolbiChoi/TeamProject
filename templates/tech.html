@@ -18,7 +18,6 @@ body, html {
   padding: 16px;
 }
 
-
 </style>
 <body>
 <!-- Navbar (sit on top) -->
@@ -27,23 +26,14 @@ body, html {
     <a href="main_home" class="w3-bar-item w3-button w3-wide"><i class="fa fa-arrow-left w3-margin-middle"></i>MAIN</a>
     <!-- Middle-sided navbar links -->
     <div class="w3-right w3-hide-small">
-      <a class="w3-bar-item w3-button">테크</a>
+      <a class="w3-bar-item w3-button w3-wide">테크·가전</a>
     </div>
-    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
-    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
-      <i class="fa fa-bars"></i>
     </a>
   </div>
 </div>
 
-<!-- Sidebar on small screens when clicking the menu icon -->
-<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
-  <a class="w3-bar-item w3-button">테크</a>
-</nav>
-
 <div class="w3-container" style="padding:128px 16px" id="bar">
 <h3 class="w3-center">별점 별 분포(Bar graph)</h3>
-
 <div class="w3-container" style="padding:128px 16px" id="pie">
 <h3 class="w3-center">긍정,부정 %(Pie graph)</h3>
 <div class="w3-container w3-large" style="padding:14vw 8vw;" id="service">
