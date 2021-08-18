@@ -30,5 +30,4 @@ urlpatterns = [
     path('living', views.living),
     path('service', views.service),
 
-    path('analysis', views.analysis),
 ]

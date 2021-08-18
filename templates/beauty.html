@@ -6,6 +6,8 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src='https://cdn.plot.ly/plotly-2.3.1.min.js'></script>
+
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
@@ -34,13 +36,42 @@ body, html {
 
 <div class="w3-container" style="padding:128px 16px" id="bar">
 <h3 class="w3-center">별점 별 분포(Bar graph)</h3>
+  <div id='bar_chart_beauty' style="width:90%"></div>
+        <script>
+        var data = [{
+          type: "bar",
+          x: {{ x_beauty | safe }},
+          y: {{ y_beauty | safe }},
+        }];
+        var layout = {
+          title: '리뷰의 별점 분포',
+          height: 500,
+          width: 500
+        };
+        Plotly.newPlot('bar_chart_beauty', data, layout);
+      </script>
+  </div>
+
 <div class="w3-container" style="padding:128px 16px" id="pie">
-<h3 class="w3-center">긍정,부정 %(Pie graph)</h3>
-<div class="w3-container w3-large" style="padding:14vw 8vw;" id="service">
-  <h1 class="w3-center">이곳에 fashion 시각화 자료를 띄웁니다.</h1>
+  <h3 class="w3-center">긍정,부정 %(Pie graph)</h3>
+  <div id='pie_chart_beauty' style="width:90%"></div>
+        <script>
+        var data = [{
+          type: "pie",
+          labels: {{ labels_beauty | safe }},
+          values: {{ values_beauty | safe }},
+        }];
+
+        var layout = {
+          title: '리뷰의 긍정 및 부정 반응',
+          height: 500,
+          width: 500
+        };
+        Plotly.newPlot('pie_chart_beauty', data, layout);
+      </script>
+  </div>
   </div>
 </div>
-
 <!-- Footer -->
 <footer class="w3-center w3-grey w3-padding-64">
   <a href="#bar" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>

@@ -7,6 +7,27 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 
+def make_y_data(val):
+    if (1 <= val < 2):
+        return 1
+    elif (2 <= val < 3):
+        return 2
+    elif (3 <= val < 4):
+        return 3
+    elif (4 <= val < 5):
+        return 4
+    elif (5 <= val < 6):
+        return 5
+    else:
+        return None
+
+def make_react_data(val):
+    if (1 <= val < 4):
+        return 'Negative'
+    elif (4 <= val < 6):
+        return 'Positive'
+    else:
+        return None
 
 def main_home(request):
     result={}
@@ -21,20 +42,7 @@ def total(request):
     fashion_total_data = pd.read_sql('select * from table_fashion', con=conn)
     living_total_data = pd.read_sql('select * from table_living', con=conn)
     beauty_total_data = pd.read_sql('select * from table_beauty', con=conn)
-
-    def make_y_data(val):
-        if (1 <= val < 2):
-            return 1
-        elif (2 <= val < 3):
-            return 2
-        elif (3 <= val < 4):
-            return 3
-        elif (4 <= val < 5):
-            return 4
-        elif (5 <= val < 6):
-            return 5
-        else:
-            return None
+    total_data = pd.read_sql('select * from table_total', con=conn)
 
     ## beauty
     beauty_y_data = beauty_total_data['star grade'].apply(lambda val: make_y_data(val))
@@ -64,79 +72,131 @@ def total(request):
     x_group_list_4 = [beauty_rate[4], fashion_rate[4], food_rate[4], living_rate[4], tech_rate[4]]
     x_group_list_5 = [beauty_rate[5], fashion_rate[5], food_rate[5], living_rate[5], tech_rate[5]]
 
-    y_group_ov = y_bar
-    x_group_1 = x_group_list_1
-    x_group_2 = x_group_list_2
-    x_group_3 = x_group_list_3
-    x_group_4 = x_group_list_4
-    x_group_5 = x_group_list_5
+    # pie graph
+    x_data = total_data['review']
+    y_data = total_data['star grade']
+    react_data = y_data.apply(lambda val: make_react_data(val))
+    react_total = react_data.value_counts()
 
-    context={'y_group_ov':y_bar,'x_group_1':x_group_list_1,'x_group_2':x_group_list_2,'x_group_3':x_group_list_3,'x_group_4':x_group_list_4,'x_group_5':x_group_list_5}
+    labels_total = ['긍정', '부정']
+    values_total = [react_total['Positive'], react_total['Negative']]
+
+    context={'y_group_ov':y_bar,'x_group_1':x_group_list_1,'x_group_2':x_group_list_2,'x_group_3':x_group_list_3,'x_group_4':x_group_list_4,'x_group_5':x_group_list_5,'labels_total':labels_total, 'values_total':values_total}
 
     return render(request, 'total.html', context)
 
 def tech(request):
-    category = request.GET.get('category')
     conn = sqlite3.connect('./polls/scraping_db/wadizdb.sqlite3')
     cur = conn.cursor()
     tech_total_data = pd.read_sql('select * from  table_tech', con = conn)
-    x_data = tech_total_data['review']
-    y_data = tech_total_data['star grade']
+    x_data_tech = tech_total_data['review']
+    y_data_tech = tech_total_data['star grade']
+## bar graph
+    y_data_tech = y_data_tech.apply(lambda val: make_y_data(val))
+    rate_data_tech = y_data_tech.value_counts()
 
-    def make_y_data(val):
-        if (1 <= val < 2):
-            return 1
-        elif (2 <= val < 3):
-            return 2
-        elif (3 <= val < 4):
-            return 3
-        elif (4 <= val < 5):
-            return 4
-        elif (5 <= val < 6):
-            return 5
-        else:
-            return None
+    x_tech = ['☆☆☆☆★', '☆☆☆★★', '☆☆★★★', '☆★★★★', '★★★★★']
+    y_tech = [rate_data_tech[1], rate_data_tech[2], rate_data_tech[3], rate_data_tech[4], rate_data_tech[5]]
+## pie graph
+    react_data_tech = y_data_tech.apply(lambda val:make_react_data(val))
+    react_tech = react_data_tech.value_counts()
 
-    y_data = y_data.apply(lambda val: make_y_data(val))
-    rate_data = y_data.value_counts()
+    labels_tech = ['긍정', '부정']
+    values_tech = [react_tech['Positive'], react_tech['Negative']]
 
-    x = ['☆☆☆☆★', '☆☆☆★★', '☆☆★★★', '☆★★★★', '★★★★★'],
-    y = [rate_data[1], rate_data[2], rate_data[3], rate_data[4], rate_data[5]]
-
-    def make_react_data(val):
-        if (1 <= val < 4):
-            return 'Negative'
-        elif (4 <= val < 6):
-            return 'Positive'
-        else:
-            return None
-
-    react_data = y_data.apply(lambda val:make_react_data(val))
-    react = react_data.value_counts()
-
-    labels = ['긍정', '부정']
-    values = [react['Positive'], react['Negative']]
-    result = {'x':x, 'y':y, 'labels':labels, 'values':values}
+    result = {'x_tech':x_tech, 'y_tech':y_tech, 'labels_tech':labels_tech, 'values_tech':values_tech}
     return render(request, 'tech.html', context=result)
 
 def fashion(request):
-    result={}
+    conn = sqlite3.connect('./polls/scraping_db/wadizdb.sqlite3')
+    cur = conn.cursor()
+    fash_total_data = pd.read_sql('select * from  table_fashion', con=conn)
+    x_data_fash = fash_total_data['review']
+    y_data_fash = fash_total_data['star grade']
+    ## bar graph
+    y_data_fash = y_data_fash.apply(lambda val: make_y_data(val))
+    rate_data_fash = y_data_fash.value_counts()
+
+    x_fash = ['☆☆☆☆★', '☆☆☆★★', '☆☆★★★', '☆★★★★', '★★★★★']
+    y_fash = [rate_data_fash[1], rate_data_fash[2], rate_data_fash[3], rate_data_fash[4], rate_data_fash[5]]
+    ## pie graph
+    react_data_fash = y_data_fash.apply(lambda val: make_react_data(val))
+    react_fash = react_data_fash.value_counts()
+
+    labels_fash = ['긍정', '부정']
+    values_fash = [react_fash['Positive'], react_fash['Negative']]
+
+    result = {'x_fash': x_fash, 'y_fash': y_fash, 'labels_fash': labels_fash, 'values_fash': values_fash}
     return render(request, 'fashion.html', context=result)
 
 def beauty(request):
-    result={}
+    conn = sqlite3.connect('./polls/scraping_db/wadizdb.sqlite3')
+    cur = conn.cursor()
+    beauty_total_data = pd.read_sql('select * from  table_beauty', con = conn)
+    x_data_beauty = beauty_total_data['review']
+    y_data_beauty = beauty_total_data['star grade']
+## bar graph
+    y_data_beauty = y_data_beauty.apply(lambda val: make_y_data(val))
+    rate_data_beauty = y_data_beauty.value_counts()
+
+    x_beauty = ['☆☆☆☆★', '☆☆☆★★', '☆☆★★★', '☆★★★★', '★★★★★']
+    y_beauty = [rate_data_beauty[1], rate_data_beauty[2], rate_data_beauty[3], rate_data_beauty[4], rate_data_beauty[5]]
+## pie graph
+    react_data_beauty = y_data_beauty.apply(lambda val:make_react_data(val))
+    react_beauty = react_data_beauty.value_counts()
+
+    labels_beauty = ['긍정', '부정']
+    values_beauty = [react_beauty['Positive'], react_beauty['Negative']]
+
+    result = {'x_beauty':x_beauty, 'y_beauty':y_beauty, 'labels_beauty':labels_beauty, 'values_beauty':values_beauty}
     return render(request, 'beauty.html', context=result)
 
 def food(request):
-    result={}
+    conn = sqlite3.connect('./polls/scraping_db/wadizdb.sqlite3')
+    cur = conn.cursor()
+    food_total_data = pd.read_sql('select * from  table_food', con=conn)
+    x_data_food = food_total_data['review']
+    y_data_food = food_total_data['star grade']
+    ## bar graph
+    y_data_food = y_data_food.apply(lambda val: make_y_data(val))
+    rate_data_food = y_data_food.value_counts()
+
+    x_food = ['☆☆☆☆★', '☆☆☆★★', '☆☆★★★', '☆★★★★', '★★★★★']
+    y_food = [rate_data_food[1], rate_data_food[2], rate_data_food[3], rate_data_food[4], rate_data_food[5]]
+    ## pie graph
+    react_data_food = y_data_food.apply(lambda val: make_react_data(val))
+    react_food = react_data_food.value_counts()
+
+    labels_food = ['긍정', '부정']
+    values_food = [react_food['Positive'], react_food['Negative']]
+
+    result = {'x_food': x_food, 'y_food': y_food, 'labels_food': labels_food, 'values_food': values_food}
     return render(request, 'food.html', context=result)
 
 def living(request):
-    result={}
+    conn = sqlite3.connect('./polls/scraping_db/wadizdb.sqlite3')
+    cur = conn.cursor()
+    living_total_data = pd.read_sql('select * from  table_living', con=conn)
+    x_data_living = living_total_data['review']
+    y_data_living = living_total_data['star grade']
+    ## bar graph
+    y_data_living= y_data_living.apply(lambda val: make_y_data(val))
+    rate_data_living = y_data_living.value_counts()
+
+    x_living = ['☆☆☆☆★', '☆☆☆★★', '☆☆★★★', '☆★★★★', '★★★★★']
+    y_living = [rate_data_living[1], rate_data_living[2], rate_data_living[3], rate_data_living[4], rate_data_living[5]]
+    ## pie graph
+    react_data_living = y_data_living.apply(lambda val: make_react_data(val))
+    react_living = react_data_living.value_counts()
+
+    labels_living = ['긍정', '부정']
+    values_living = [react_living['Positive'], react_living['Negative']]
+
+    result = {'x_living': x_living, 'y_living': y_living, 'labels_living': labels_living, 'values_living': values_living}
     return render(request, 'living.html', context=result)
 
 def service(request):
-    result={}
+    result = {}
     return render(request, 'service.html', context=result)
 
 def analysis(request):  ## html 파일 하나로 처리 (total 제외)
