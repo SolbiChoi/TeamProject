@@ -1,6 +1,5 @@
 import sqlite3
 import pandas as pd
-import plotly.offline as plo
 import plotly.graph_objects as go
 import plotly.express as px
 from django.shortcuts import render
@@ -84,6 +83,26 @@ def tech(request):
     x_data = tech_total_data['review']
     y_data = tech_total_data['star grade']
 
+    def make_y_data(val):
+        if (1 <= val < 2):
+            return 1
+        elif (2 <= val < 3):
+            return 2
+        elif (3 <= val < 4):
+            return 3
+        elif (4 <= val < 5):
+            return 4
+        elif (5 <= val < 6):
+            return 5
+        else:
+            return None
+
+    y_data = y_data.apply(lambda val: make_y_data(val))
+    rate_data = y_data.value_counts()
+
+    x = ['☆☆☆☆★', '☆☆☆★★', '☆☆★★★', '☆★★★★', '★★★★★'],
+    y = [rate_data[1], rate_data[2], rate_data[3], rate_data[4], rate_data[5]]
+
     def make_react_data(val):
         if (1 <= val < 4):
             return 'Negative'
@@ -97,7 +116,7 @@ def tech(request):
 
     labels = ['긍정', '부정']
     values = [react['Positive'], react['Negative']]
-    result = {'labels':labels, 'values':values}
+    result = {'x':x, 'y':y, 'labels':labels, 'values':values}
     return render(request, 'tech.html', context=result)
 
 def fashion(request):

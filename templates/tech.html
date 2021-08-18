@@ -35,8 +35,25 @@ body, html {
 
 <div class="w3-container" style="padding:128px 16px" id="bar">
 <h3 class="w3-center">별점 별 분포(Bar graph)</h3>
+  <div id='bar_chart' style="width:90%"></div>
+        <script>
+        var data = [{
+          type: "bar",
+          x: {{ x | safe }},
+          y: {{ y | safe }},
+        }];
+        var layout = {
+          title: '리뷰의 별점 분포',
+          height: 500,
+          width: 500
+        };
+        Plotly.newPlot('bar_chart', data, layout);
+      </script>
+  </div>
+
 <div class="w3-container" style="padding:128px 16px" id="pie">
-  <div id='pie_chart' style="width:90%;max-width:700px"></div>
+  <h3 class="w3-center">긍정,부정 %(Pie graph)</h3>
+  <div id='pie_chart' style="width:90%"></div>
         <script>
         var data = [{
           type: "pie",
@@ -51,10 +68,7 @@ body, html {
         };
         Plotly.newPlot('pie_chart', data, layout);
       </script>
-        </div>
-<h3 class="w3-center">긍정,부정 %(Pie graph)</h3>
-<div class="w3-container w3-large" style="padding:14vw 8vw;" id="service">
-  <h1 class="w3-center">이곳에 tech 시각화 자료를 띄웁니다.</h1>
+  </div>
   </div>
 </div>
 
