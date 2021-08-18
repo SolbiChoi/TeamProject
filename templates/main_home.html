@@ -82,7 +82,7 @@ form { display: inline;}
 <!-- Header with full-height image -->
 <header class="bgimg-1 w3-display-container" id="home">
   <div class="w3-display-bottommiddle w3-text-white" style="padding:48px">
-    <form name="search" method="GET">
+    <form name="search" action="/analysis" method="GET">
         <div class="w3-input-group w3-hover-opacity-off " style="display:inline-flex; flex-direction: row;">
             <select name="category" onchange="if(this.value) location.href=(this.value);" style="padding: 1px 20px! important;">
               <option value="" disabled selected hidden>Choose Category</option>
@@ -106,22 +106,23 @@ form { display: inline;}
   <h3 class="w3-center">ABOUT SERVICES</h3>
   <div class="w3-row-padding w3-center" style="margin-top:64px">
     <div class="w3-third">
-      <i class="fa fa-heart w3-margin-bottom w3-jumbo w3-center" onclick="document.getElementById('Info').style.display='block'" data-toggle="modal" data-target="#myModal" class="w3-hover-opacity" ></i>
+      <i class="fa fa-check w3-margin-bottom w3-jumbo w3-center" onclick="document.getElementById('Info').style.display='block'" data-toggle="modal" data-target="#myModal" class="w3-hover-opacity" ></i>
       <p class="w3-large">Info</p>
     </div>
     <div class="w3-third">
       <a href="service" style="text-decoration:none">
-        <i class="fa fa-heart w3-margin-bottom w3-jumbo w3-center"></i></a>
+        <i class="fa fa-check w3-margin-bottom w3-jumbo w3-center"></i></a>
       <p class="w3-large">Service</p>
     </div>
     <div class="w3-third">
       <a href="#team" style="text-decoration:none">
-        <i class="fa fa-heart w3-margin-bottom w3-jumbo w3-center" class="w3-hover-opacity"></i>
+        <i class="fa fa-check w3-margin-bottom w3-jumbo w3-center" class="w3-hover-opacity"></i>
         <p class="w3-large">Team</p>
       </a>
     </div>
   </div>
 </div>
+
 
 <!-- Modal for full size images on click-->
 <div id="Info" class="w3-modal w3-black" onclick="this.style.display='none'">
@@ -145,6 +146,29 @@ form { display: inline;}
 <div id="Service" class="w3-modal w3-black" onclick="this.style.display='none'">
 </div>
 
+<!-- Modal for full size images on click-->
+<div id="Info" class="w3-modal w3-black" onclick="this.style.display='none'">
+  <div class="w3-modal-content w3-card-8 w3-animate-zoom w3-text-black">
+    <header class="w3-container w3-text-black">
+      <span onclick="document.getElementById('Info').style.display='none'" class="w3-closebtn w3-padding-top" style="float: right;">&times;</span>
+    </header>
+    <div class="w3-container" style="text-align:center; margin:0 auto;">
+      <p><h3>크라우드 펀딩 사이트 내 긍정 또는 부정적인 리뷰가 <br>펀딩 성공여부에 미치는 영향 분석</h3><br>
+            <h4><b>프로젝트 목표</b></h4>
+            <p>본 프로젝트에서는 크라우드 펀딩 사이트인 와디즈에 게시된 <br>프로젝트의 커뮤니티 글을 감성 분석한다.</p>
+            <h4><b>프로젝트 개요</b></h4>
+            <p>와디즈와 같은 플랫폼을 통해 다수의 투자자들로부터 <br>자금을 모으는 크라우드 펀딩은 투자자들의 <br>상품에 대한 반응을 분석하는 것이 중요하다.</p>
+            <p>투자자는 브라우저에서 진행하고자 하는 프로젝트의 카테고리를 선택하여 <br>해당 프로젝트 진행 시 성공률 및 긍정, 부정과 같은 리뷰어들의 반응을 <br>시각화한 자료를 확인할 수 있으며 관련 분석 자료를 제공받는다.</p>
+            <p>본 프로젝트를 통해 후원자의 긍정 및 부정 반응을 도출하여 <br>프로젝트의 성공 확률을 높일 수 있을 것으로 예상된다.</p>
+      </p>
+    </div>
+    <div class="w3-container w3-padding"></div>
+  </div>
+</div>
+
+<div id="Service" class="w3-modal w3-black" onclick="this.style.display='none'">
+</div>
+
 <!-- Team Section -->
 <div class="w3-container" style="padding:128px 16px" id="team">
   <h3 class="w3-center">THE TEAM</h3>
@@ -152,7 +176,6 @@ form { display: inline;}
   <div class="w3-row-padding w3-grayscale" style="margin-top:64px">
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-card">
-        <img src="/w3images/team2.jpg" alt="John" style="width:100%">
         <div class="w3-container w3-center">
           <h3>Choi, SolBi</h3>
           <p class="w3-opacity">Team Leader</p>
@@ -163,7 +186,6 @@ form { display: inline;}
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-card">
-        <img src="/w3images/team1.jpg" alt="Jane" style="width:100%">
         <div class="w3-container w3-center">
           <h3>Shin, ChaeWon</h3>
           <p class="w3-opacity">Team Member</p>
@@ -174,7 +196,6 @@ form { display: inline;}
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-card">
-        <img src="/w3images/team3.jpg" alt="Mike" style="width:100%">
         <div class="w3-container w3-center">
           <h3>Kim, HaYoung</h3>
           <p class="w3-opacity">Team Member</p>
@@ -185,7 +206,6 @@ form { display: inline;}
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-card">
-        <img src="/w3images/team4.jpg" alt="Dan" style="width:100%">
         <div class="w3-container w3-center">
           <h3>Park, GunUk</h3>
           <p class="w3-opacity">Team Member</p>
