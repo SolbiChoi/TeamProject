@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+
+</style>
+<body>
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card" id="myNavbar">
+    <a href="main_home" class="w3-bar-item w3-button w3-wide"><i class="fa fa-arrow-left w3-margin-middle"></i>MAIN</a>
+    <!-- Middle-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a class="w3-bar-item w3-button w3-wide">패션·잡화</a>
+    </div>
+    </a>
+  </div>
+</div>
+
+<div class="w3-container" style="padding:128px 16px" id="bar">
+<h3 class="w3-center">별점 별 분포(Bar graph)</h3>
+<div class="w3-container" style="padding:128px 16px" id="pie">
+<h3 class="w3-center">긍정,부정 %(Pie graph)</h3>
+<div class="w3-container w3-large" style="padding:14vw 8vw;" id="service">
+  <h1 class="w3-center">이곳에 fashion 시각화 자료를 띄웁니다.</h1>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-grey w3-padding-64">
+  <a href="#bar" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+</footer>
+
+<script>
+
+// Toggle between showing and hiding the sidebar when clicking the menu icon
+var mySidebar = document.getElementById("mySidebar");
+
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+  } else {
+    mySidebar.style.display = 'block';
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+}
+</script>
+</body>
+</html>
