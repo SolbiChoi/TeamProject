@@ -95,7 +95,7 @@ def tech(request):
     y_data_tech = y_data_tech.apply(lambda val: make_y_data(val))
     rate_data_tech = y_data_tech.value_counts()
 
-    x_tech = ['☆☆☆☆★', '☆☆☆★★', '☆☆★★★', '☆★★★★', '★★★★★']
+    x_tech = ['★☆☆☆☆', '★★☆☆☆', '★★★☆☆', '★★★★☆', '★★★★★']
     y_tech = [rate_data_tech[1], rate_data_tech[2], rate_data_tech[3], rate_data_tech[4], rate_data_tech[5]]
 ## pie graph
     react_data_tech = y_data_tech.apply(lambda val:make_react_data(val))
@@ -117,7 +117,7 @@ def fashion(request):
     y_data_fash = y_data_fash.apply(lambda val: make_y_data(val))
     rate_data_fash = y_data_fash.value_counts()
 
-    x_fash = ['☆☆☆☆★', '☆☆☆★★', '☆☆★★★', '☆★★★★', '★★★★★']
+    x_fash = ['★☆☆☆☆', '★★☆☆☆', '★★★☆☆', '★★★★☆', '★★★★★']
     y_fash = [rate_data_fash[1], rate_data_fash[2], rate_data_fash[3], rate_data_fash[4], rate_data_fash[5]]
     ## pie graph
     react_data_fash = y_data_fash.apply(lambda val: make_react_data(val))
@@ -139,7 +139,7 @@ def beauty(request):
     y_data_beauty = y_data_beauty.apply(lambda val: make_y_data(val))
     rate_data_beauty = y_data_beauty.value_counts()
 
-    x_beauty = ['☆☆☆☆★', '☆☆☆★★', '☆☆★★★', '☆★★★★', '★★★★★']
+    x_beauty = ['★☆☆☆☆', '★★☆☆☆', '★★★☆☆', '★★★★☆', '★★★★★']
     y_beauty = [rate_data_beauty[1], rate_data_beauty[2], rate_data_beauty[3], rate_data_beauty[4], rate_data_beauty[5]]
 ## pie graph
     react_data_beauty = y_data_beauty.apply(lambda val:make_react_data(val))
@@ -161,7 +161,7 @@ def food(request):
     y_data_food = y_data_food.apply(lambda val: make_y_data(val))
     rate_data_food = y_data_food.value_counts()
 
-    x_food = ['☆☆☆☆★', '☆☆☆★★', '☆☆★★★', '☆★★★★', '★★★★★']
+    x_food = ['★☆☆☆☆', '★★☆☆☆', '★★★☆☆', '★★★★☆', '★★★★★']
     y_food = [rate_data_food[1], rate_data_food[2], rate_data_food[3], rate_data_food[4], rate_data_food[5]]
     ## pie graph
     react_data_food = y_data_food.apply(lambda val: make_react_data(val))
@@ -183,7 +183,7 @@ def living(request):
     y_data_living= y_data_living.apply(lambda val: make_y_data(val))
     rate_data_living = y_data_living.value_counts()
 
-    x_living = ['☆☆☆☆★', '☆☆☆★★', '☆☆★★★', '☆★★★★', '★★★★★']
+    x_living = ['★☆☆☆☆', '★★☆☆☆', '★★★☆☆', '★★★★☆', '★★★★★']
     y_living = [rate_data_living[1], rate_data_living[2], rate_data_living[3], rate_data_living[4], rate_data_living[5]]
     ## pie graph
     react_data_living = y_data_living.apply(lambda val: make_react_data(val))
