@@ -50,7 +50,7 @@ body, html {
         <p>다음은 와디즈 프로젝트 내 리뷰를 감성분석하여 나타낸 시각화 자료이며 맨 위부터 카테고리별 별점 분포 그래프, 긍정·부정 파이 그래프, 긍정·부정 워드클라우드 순서 입니다.<p>
 <!-- Overview part.2 -->
 <div class="w3-container" style="padding:64px 16px" id="bar">
-    <h1 class="w3-text-blue-gray"><b>홈리빙 별점 분포 (Bar graph)</b></h1>
+    <h1 class="w3-text-blue-gray"><b>홈·리빙 별점 분포 (Bar graph)</b></h1>
   <div id='bar_chart_living' style="width:90%"></div>
         <script>
         var data = [{
@@ -66,9 +66,9 @@ body, html {
         Plotly.newPlot('bar_chart_living', data, layout);
       </script>
   </div>
-
+<!-- Overview part.3 -->
 <div class="w3-container" style="padding:64px 16px" id="pie">
-  <h2 class="w3-text-blue-gray"><b>긍정,부정 %(Pie graph)</b></h2>
+  <h2 class="w3-text-blue-gray"><b>홈·리빙 긍정,부정 %(Pie graph)</b></h2>
     <div id='pie_chart_living' style="width:90%"></div>
       <script>
       var data = [{
@@ -84,6 +84,10 @@ body, html {
       };
       Plotly.newPlot('pie_chart_living', data, layout);
       </script>
+    </div>
+<!-- Overview part.4 -->
+    <div class="w3-container" style="padding:32px 16px" id="wc">
+      <h2 class="w3-text-blue-gray"><b>홈·리빙 긍정,부정(Word Cloud)</b></h2>
     </div>
   </div>
 </div>
