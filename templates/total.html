@@ -59,7 +59,7 @@ body, html {
           var trace1 = {
             x: {{ x_group_1 | safe }},
             y: {{ y_group_ov | safe }},
-            name: '☆☆☆☆★',
+            name: '★☆☆☆☆',
             orientation: 'h',
             marker: {
               color: 'lightslategray',
@@ -71,7 +71,7 @@ body, html {
           var trace2 = {
             x: {{ x_group_2 | safe }},
             y: {{ y_group_ov | safe }},
-            name: '☆☆☆★★',
+            name: '★★☆☆☆',
             orientation: 'h',
             type: 'bar',
             marker: {
@@ -83,7 +83,7 @@ body, html {
           var trace3 = {
             x: {{ x_group_3 | safe }},
             y: {{ y_group_ov | safe }},
-            name: '☆☆★★★',
+            name: '★★★☆☆',
             orientation: 'h',
             type: 'bar',
             marker: {
@@ -95,7 +95,7 @@ body, html {
           var trace4 = {
             x: {{ x_group_4 | safe }},
             y: {{ y_group_ov | safe }},
-            name: '☆★★★★',
+            name: '★★★★☆',
             orientation: 'h',
             type: 'bar',
             marker: {
@@ -131,20 +131,22 @@ body, html {
   <div class="w3-container" style="padding:64px 16px" id="pie">
     <h2 class="w3-text-blue-gray"><b>전체 카테고리 긍정,부정 %(Pie graph)</b></h2>
       <div id='pie_chart_total' style="width:90%"></div>
-            <script>
-            var data = [{
-              type: "pie",
-              labels: {{ labels_total | safe }},
-              values: {{ values_total | safe }},
-            }];
+        <script>
+          var ultimateColors = ['rgb(45,120,204)','rgb(255,98,98)'];
 
-            var layout = {
-              title: '리뷰의 긍정 및 부정 반응',
-              height: 500,
-              width: 500
-            };
-            Plotly.newPlot('pie_chart_total', data, layout);
-          </script>
+          var data = [{
+            type: "pie",
+            labels: {{ labels_total | safe }},
+            values: {{ values_total | safe }},
+            marker: { colors: ultimateColors },
+          }];
+          var layout = {
+            title: '리뷰의 긍정 및 부정 반응',
+            height: 500,
+            width: 500
+          };
+          Plotly.newPlot('pie_chart_total', data, layout);
+         </script>
       </div>
   </div>
 </div>

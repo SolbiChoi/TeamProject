@@ -71,16 +71,19 @@ body, html {
   <h2 class="w3-text-blue-gray"><b>테크·가전 긍정,부정 %(Pie graph)</b></h2>
     <div id='pie_chart_tech' style="width:90%"></div>
           <script>
+          var ultimateColors = ['rgb(45,120,204)','rgb(255,98,98)'];
+
           var data = [{
             type: "pie",
             labels: {{ labels_tech | safe }},
             values: {{ values_tech | safe }},
+            marker: { colors: ultimateColors },
           }];
 
           var layout = {
             title: '리뷰의 긍정 및 부정 반응',
             height: 500,
-            width: 500
+            width: 500,
           };
           Plotly.newPlot('pie_chart_tech', data, layout);
         </script>

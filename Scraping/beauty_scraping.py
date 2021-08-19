@@ -1,8 +1,6 @@
 import pandas as pd
 from selenium import webdriver
 import time
-import numpy as np
-import requests
 from selenium.common.exceptions import NoSuchElementException
 
 driver = webdriver.Chrome('./chromedriver.exe')
