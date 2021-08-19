@@ -71,20 +71,24 @@ body, html {
 <div class="w3-container" style="padding:32px 16px" id="pie">
   <h2 class="w3-text-blue-gray"><b>뷰티 긍정,부정 %(Pie graph)</b></h2>
     <div id='pie_chart_beauty' style="width:90%"></div>
-          <script>
-          var data = [{
-            type: "pie",
-            labels: {{ labels_beauty | safe }},
-            values: {{ values_beauty | safe }},
-          }];
-          var layout = {
-            title: '리뷰의 긍정 및 부정 반응',
-            height: 500,
-            width: 500
-          };
-          Plotly.newPlot('pie_chart_beauty', data, layout);
-        </script>
-    </div>
+      <script>
+        var ultimateColors = ['rgb(45,120,204)','rgb(255,98,98)'];
+
+        var data = [{
+          type: "pie",
+          labels: {{ labels_beauty | safe }},
+          values: {{ values_beauty | safe }},
+          marker: { colors: ultimateColors },
+        }];
+
+        var layout = {
+          title: '리뷰의 긍정 및 부정 반응',
+          height: 500,
+          width: 500
+        };
+        Plotly.newPlot('pie_chart_beauty', data, layout);
+    </script>
+</div>
 <!-- Overview part.4 -->
     <div class="w3-container" style="padding:32px 16px" id="wc">
       <h2 class="w3-text-blue-gray"><b>뷰티 긍정,부정(Word Cloud)</b></h2>

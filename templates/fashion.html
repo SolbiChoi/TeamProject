@@ -72,10 +72,13 @@ body, html {
   <h2 class="w3-text-blue-gray"><b>패션·잡화 긍정,부정 %(Pie graph)</b></h2>
     <div id='pie_chart_fash' style="width:90%"></div>
       <script>
+      var ultimateColors = ['rgb(45,120,204)','rgb(255,98,98)'];
+
       var data = [{
         type: "pie",
         labels: {{ labels_fash | safe }},
         values: {{ values_fash | safe }},
+        marker: { colors: ultimateColors },
       }];
 
       var layout = {

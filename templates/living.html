@@ -71,10 +71,13 @@ body, html {
   <h2 class="w3-text-blue-gray"><b>홈·리빙 긍정,부정 %(Pie graph)</b></h2>
     <div id='pie_chart_living' style="width:90%"></div>
       <script>
+      var ultimateColors = ['rgb(45,120,204)','rgb(255,98,98)'];
+
       var data = [{
         type: "pie",
         labels: {{ labels_living | safe }},
         values: {{ values_living | safe }},
+        marker: { colors: ultimateColors },
       }];
 
       var layout = {
