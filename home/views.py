@@ -1,8 +1,13 @@
 import sqlite3
+
+import konlpy
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
+import numpy as np
 from django.shortcuts import render
+import tensorflow as tf
+from tensorflow import keras
 
 # Create your views here.
 from django.http import HttpResponse
@@ -196,15 +201,32 @@ def living(request):
     return render(request, 'living.html', context=result)
 
 def service(request):
-    result = {}
-    return render(request, 'service.html', context=result)
+    category = request.GET.get('category',None)
+    search = request.GET.get('search',None)
 
-def analysis(request):  ## html 파일 하나로 처리 (total 제외)
-    category = request.GET.get('category')
-    conn = sqlite3.connect('../polls/scraping_db/wadizdb.sqlite3')
-    cur = conn.cursor()
-    df = pd.read_sql_query("SELECT * FROM table_"+category+"", conn) # 해당 카테고리의 DB를 불러옴
-# 시각화 자료 데이터 첨부
+    if category == None or search == None:
+        return render(request, 'service.html')
+    else:
+        path01 = './DeepLearning/files/DL_%s.h5' % category
+        loaded_model = tf.keras.models.load_model(path01)
+        path02 = './DeepLearning/files/tokenizer_%s.pkl' % category
+        tokenizer = pd.read_pickle(path02)
+        stopwords = './DeepLearning/files/stopwords.pkl'
+        def sentiment_predict(sentence):
+            okt = konlpy.tag.Okt()
+            new_sentence = [tok for tok in sentence if tok not in stopwords]
+            encoded = tokenizer.texts_to_sequences([new_sentence])
+            pad_new = tf.keras.preprocessing.sequence.pad_sequences(encoded, maxlen=200)
+            score = loaded_model.predict(pad_new)
+            return score
 
-    result={}
-    return render(request, 'analysis.html', context=result)
+        search = request.GET.get('search')
+        result = sentiment_predict(search)
+
+        negative = (result[0][0] + result[0][1] + result[0][2]) * 100
+        positive = (result[0][3] + result[0][4]) * 100
+        labels_service = ['negative', 'positive']
+        values_service = [negative, positive]
+        result01 = {'labels_service': labels_service, 'values_service': values_service}
+
+        return render(request, 'service.html', context=result01)
