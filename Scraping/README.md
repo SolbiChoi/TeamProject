@@ -7,13 +7,21 @@
 1. 와디즈 사이트의 각 카테고리별 url을 불러옵니다. 
    
 아래는 테크·가전 카테고리의 url 이미지 입니다.
-   
+  
+  ![url](https://user-images.githubusercontent.com/86331136/130009861-950bf04a-3a88-427c-b6fe-43ac8473ff02.png)
+
 2. 카테고리 마다 스크래핑 할 프로젝트의 수를 정하고 스크롤을 내리고 프로젝트를 하나하나 클릭합니다.
 
 스크래핑이 시간이 오래 걸려 댓글 수에 따라 스크래핑 할 프로젝트 갯수를 조절했습니다. 댓글은 5천개 이상 나오도록 했습니다.
+
+![scroll](https://user-images.githubusercontent.com/86331136/130010002-0b814291-6f98-4af6-914e-5f8545993d47.png)
 
 3. 프로젝트 안의 댓글이 있는 커뮤니티 탭을 클릭하고 댓글과 별점을 스크래핑 했습니다.
 
 댓글이 5개만 보여지도록 되어있기 때문에 더보기를 눌러 모든 댓글이 나오도록 while문을 돌렸습니다. 댓글이 없는 경우는 예외처리를 했습니다.
 
+![review](https://user-images.githubusercontent.com/86331136/130010030-f041b1f6-9f7c-42a3-b2f7-ddd5006bb474.png)
+
 4.결과물을 데이터프레임에 넣고 엑셀로 저장합니다.
+
+![excel_save](https://user-images.githubusercontent.com/86331136/130010103-cfaa471d-6ba2-4def-9743-cc0147e1df68.png)
