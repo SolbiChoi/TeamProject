@@ -65,7 +65,7 @@ select::-ms-expand {display: none;}
 <header class="bgimg-1 w3-display-container" id="top">
 <div class="w3-display-container w3-large" style="padding:14vw 8vw;" id="service">
   <div class="w3-display-middle w3-text-white" style="padding:48px">
-    <form name="search" method="GET">
+    <form name="search" method="GET" action="" class="form">
         <div class="w3-input-group w3-hover-opacity-off" style="display:inline-flex; flex-direction: row;">
             <select name="category" style="padding: 1px 20px! important;">
               <option value="" disabled selected hidden>Choose Category</option>
@@ -76,13 +76,30 @@ select::-ms-expand {display: none;}
               <option value="food">푸드</option>
               <option value="living">홈리빙</option>
             </select>
-          <form class="search-text" action="action_page.php">
-            <input type="text" placeholder="Search.." name="search">
-          </form>
+            <input type="text" placeholder="예상 리뷰를 입력하세요.." name="search">
           <button class="button button1"><i class="fa fa-search"></i></button>
         </div>
       </form>
   </div>
+  <!-- Overview part.3 -->
+  <div class="w3-container" style="padding:64px 16px" id="pie">
+<!--    <h2 class="w3-text-blue-gray"><b>예상 리뷰 반응(Pie graph)</b></h2>-->
+      <div id='pie_chart_service' style="width:90%"></div>
+            <script>
+            var data = [{
+              type: "pie",
+              labels: {{ labels_service | safe }},
+              values: {{ values_service | safe }},
+            }];
+
+            var layout = {
+              title: '리뷰의 긍정 및 부정 반응 예상',
+              height: 500,
+              width: 500
+            };
+            Plotly.newPlot('pie_chart_service', data, layout);
+          </script>
+      </div>
   </div>
 </div>
 </header>
