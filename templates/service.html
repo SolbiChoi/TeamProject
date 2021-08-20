@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src='https://cdn.plot.ly/plotly-2.3.1.min.js'></script>
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
@@ -84,26 +85,24 @@ select::-ms-expand {display: none;}
     <!-- Overview part.3 -->
     <div class="w3-container w3-center" style="padding:64px 16px" id="pie">
       <h2 class="w3-text-blue-gray"><b>예상 리뷰 반응</b></h2>
+        <div id='pie_chart_service' style="width:90%">
+         <script>
+              var data = [{
+                type: "pie",
+                labels: {{ labels_service | safe }},
+                values: {{ values_service | safe }},
+              }];
+
+              var layout = {
+                title: '리뷰의 긍정 및 부정 반응 예상',
+                height: 500,
+                width: 500
+              };
+              Plotly.newPlot('pie_chart_service', data, layout);
+         </script>
+        </div>
     </div>
   </div>
-</header>
-            <script>
-            var data = [{
-              type: "pie",
-              labels: {{ labels_service | safe }},
-              values: {{ values_service | safe }},
-            }];
-
-            var layout = {
-              title: '리뷰의 긍정 및 부정 반응 예상',
-              height: 500,
-              width: 500
-            };
-            Plotly.newPlot('pie_chart_service', data, layout);
-          </script>
-      </div>
-  </div>
-</div>
 </header>
 
 <!-- Footer -->
