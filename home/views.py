@@ -216,12 +216,13 @@ def service(request):
             okt = konlpy.tag.Okt()
             new_sentence = [tok for tok in sentence if tok not in stopwords]
             encoded = tokenizer.texts_to_sequences([new_sentence])
-            pad_new = tf.keras.preprocessing.sequence.pad_sequences(encoded, maxlen=200)
+            pad_new = tf.keras.preprocessing.sequence.pad_sequences(encoded, maxlen=50)
             score = loaded_model.predict(pad_new)
             return score
 
         search = request.GET.get('search')
         result = sentiment_predict(search)
+        score_max = np.argmax(result)
 
         negative = (result[0][0] + result[0][1] + result[0][2]) * 100
         positive = (result[0][3] + result[0][4]) * 100
