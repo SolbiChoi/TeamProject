@@ -11,6 +11,9 @@
     본 프로젝트를 통해 프로젝트의 성공 확률을 높일 수 있을 것으로 예상된다.
 ## ◾ 분석 사이트
 - [와디즈(Wadiz)](https://www.wadiz.kr/)
+## ◾프로젝트 수행방법
+  - [스크래핑](https://github.com/SolbiChoi/TeamProject/tree/master/Scraping#readme)  
+  - [머신러닝](https://github.com/SolbiChoi/TeamProject/tree/master/DeepLearning#readme)
 ## ◾ 프로젝트 추진 일정
 - **프로젝트 수립과 데이터 수집**  
 08/10 : 팀 업무분장, 주제 설정  
